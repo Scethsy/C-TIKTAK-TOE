@@ -10,12 +10,14 @@ void Input_Validation (int &x) {
 	return;
 }
 
-void Duplicate (int x, int y) {
-	while (x == y) {
-		cout <<"Please enter a space that is not yet occupied." << endl;
-		cin.clear();
-		cin.ignore(1214,'\n');
-		Input_Validation(y);
+void Duplicate (int x[], int y) {
+	for(int i = 0; i < 9; i++) {
+		if (x[i] == y) {
+			cout <<"Please enter a space that is not yet occupied." << endl;
+			cin.clear();
+			cin.ignore(1214,'\n');
+			Input_Validation(y);
+		}
 	}
 }
 
@@ -91,10 +93,8 @@ int main() {
 		layout(arr);
 		menu();
 		Input_Validation(choice);
-		for(int i = 0; i < 9; i++) {
-			Duplicate(choice_checker[i], choice);
-			choice_checker[i] = choice;
-		}
+		Duplicate(choice_checker, choice);
+		choice_checker[i] = choice;
 		switch (choice) {
 			case 1:
 				arr[0][0] = shape;
